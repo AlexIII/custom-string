@@ -101,7 +101,9 @@ BOOST_AUTO_TEST_CASE( Comparison ) {
     
     // Test
     BOOST_TEST( str1 == Custom::String(std_str1.c_str()) );
-    BOOST_TEST( str1.compare(str2) == std_str1.compare(std_str2) );
+    const auto c1 = str1.compare(str2);
+    const auto c2 = std_str1.compare(std_str2);
+    BOOST_TEST( (c1 < 0? -1 : c1 > 0? 1 : 0) == (c2 < 0? -1 : c2 > 0? 1 : 0) );
 }
 
 BOOST_AUTO_TEST_CASE( ToLower_ToUpper ) {
